@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { GraduationCap, Heart, Star, Calendar, Clock, MapPin } from 'lucide-react';
-import { caveat } from './layout';
 import Head from 'next/head';
 
 export default function GraduacionPreescolar() {
@@ -18,7 +17,7 @@ export default function GraduacionPreescolar() {
       {/* Header */}
       <header className="p-5 bg-black text-amber-400">
         <div className="container mx-auto">
-          <h1 className={`text-4xl font-bold text-center ${caveat.className}`}>Tesoros del Saber</h1>
+          <h1 className="text-4xl font-bold text-center font-caveat">Tesoros del Saber</h1>
           <p className="text-center mt-2 text-amber-200">"Tesoros de la sabiduría, el conocimiento y el discernimiento que Dios ofrece a las personas.<br></br>
             Un lugar donde cada estudiante es valorado, donde el aprendizaje y los valores crecen en cada etapa."</p>
         </div>

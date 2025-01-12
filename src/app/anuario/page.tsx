@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
-import { caveat } from '../layout'
+
 
 const graduados = [
     { id: 1, nombre: "ACUÑA TINCO, Maria Fernanda", cumpleanos: "26/03/2019", profesion: "Bombero", hobbys: "Viajar en familia" },
@@ -29,7 +29,7 @@ export default function Anuario() {
             {/* Header */}
             <header className="p-5 bg-black text-amber-400">
                 <div className="container mx-auto flex justify-between items-center">
-                    <h1 className={`text-4xl font-bold text-center ${caveat.className}`}>Tesoros del Saber</h1>
+                    <h1 className="text-4xl font-bold text-center font-caveat">Tesoros del Saber</h1>
                     <Link href="/" className="flex items-center text-amber-400 hover:text-amber-300">
                         <ArrowLeft className="mr-2" />
                         Regresar
