@@ -19,6 +19,9 @@ export default function Galeria() {
     const [lightboxItem, setLightboxItem] = useState<MediaItem | null>(null)
     const [lightboxIndex, setLightboxIndex] = useState(0)
     const [zoom, setZoom] = useState(1)
+    const [offsetX, setOffsetX] = useState(0)  // Desplazamiento en el eje X
+    const [offsetY, setOffsetY] = useState(0)  // Desplazamiento en el eje Y
+    const [isDragging, setIsDragging] = useState(false)  // Control de si el usuario está arrastrando
     const [mediaItems, setMediaItems] = useState<MediaItem[]>([])
 
     useEffect(() => {
@@ -55,8 +58,33 @@ export default function Galeria() {
     const nextImage = () => setLightboxIndex(prev => (prev + 1) % mediaItems.length)
     const prevImage = () => setLightboxIndex(prev => (prev - 1 + mediaItems.length) % mediaItems.length)
 
-    const handleZoomIn = () => setZoom(prev => Math.min(prev + 0.1, 3))
-    const handleZoomOut = () => setZoom(prev => Math.max(prev - 0.1, 1))
+    const handleZoomIn = () => setZoom(prev => Math.min(prev + 0.1, 3)) // Limita el zoom máximo a 3
+    const handleZoomOut = () => setZoom(prev => Math.max(prev - 0.1, 1)) // Limita el zoom mínimo a 1
+
+    // Función para manejar el inicio del arrastre
+    const handleMouseDown = (e: React.MouseEvent) => {
+        setIsDragging(true)
+        e.preventDefault()  // Evitar la selección de texto
+    }
+
+    // Función para manejar el movimiento del ratón
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (isDragging) {
+            setOffsetX(prevOffsetX => prevOffsetX + e.movementX) // Mover en el eje X
+            setOffsetY(prevOffsetY => prevOffsetY + e.movementY) // Mover en el eje Y
+        }
+    }
+
+    // Función para manejar el fin del arrastre
+    const handleMouseUp = () => {
+        setIsDragging(false)
+    }
+
+    // Función para reiniciar el desplazamiento
+    const resetOffsets = () => {
+        setOffsetX(0)
+        setOffsetY(0)
+    }
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white">
@@ -113,9 +141,11 @@ export default function Galeria() {
                             <Image
                                 src={item.src}
                                 alt={item.alt}
-                                layout="fill"
+                                width={500}  // Ajusta el tamaño de la imagen
+                                height={500}
                                 objectFit="cover"
                                 className="rounded-lg"
+                                loading="lazy"
                             />
                         </div>
                     ))}
@@ -140,14 +170,19 @@ export default function Galeria() {
                         <div className="overflow-hidden" style={{ maxWidth: '100%', maxHeight: '80vh' }}>
                             <div
                                 style={{
-                                    transform: `scale(${zoom})`,
+                                    transform: `scale(${zoom}) translate(${offsetX}px, ${offsetY}px)`,
                                     transition: 'transform 0.2s',
                                     width: '100%',
                                     height: '100%',
                                     display: 'flex',
                                     justifyContent: 'center',
-                                    alignItems: 'center'
+                                    alignItems: 'center',
+                                    cursor: isDragging ? 'grab' : 'zoom-in', // Cambiar el cursor si está arrastrando
                                 }}
+                                onMouseDown={handleMouseDown}
+                                onMouseMove={handleMouseMove}
+                                onMouseUp={handleMouseUp}
+                                onMouseLeave={handleMouseUp} // Si el mouse sale de la imagen, se detiene el arrastre
                             >
                                 <Image
                                     src={mediaItems[lightboxIndex].src}
@@ -161,6 +196,7 @@ export default function Galeria() {
                         <Button className="absolute top-2 right-2" onClick={() => {
                             setLightboxItem(null)
                             setZoom(1)
+                            resetOffsets() // Reiniciar el desplazamiento al cerrar la imagen
                         }}>
                             Cerrar
                         </Button>
