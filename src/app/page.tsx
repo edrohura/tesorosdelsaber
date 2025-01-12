@@ -1,10 +1,10 @@
 import React from 'react';
-import Image from 'next/image'
-import Link from 'next/link'
-import { Button } from "../components/ui/button"
-import { Card, CardContent } from "../components/ui/card"
-import { GraduationCap, Heart, Star, Calendar, Clock, MapPin } from 'lucide-react'
-import { caveat } from './layout'
+import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from "../components/ui/button";
+import { Card, CardContent } from "../components/ui/card";
+import { GraduationCap, Heart, Star, Calendar, Clock, MapPin } from 'lucide-react';
+import { caveatFont } from './layout';
 import Head from 'next/head';
 
 export default function GraduacionPreescolar() {
@@ -13,12 +13,12 @@ export default function GraduacionPreescolar() {
       <Head>
         <title>Graduación 2024 - Tesoros del Saber</title>
         <meta name="description" content="Página de la graduación de la promoción Preescolar 2024, celebrando los logros de nuestros pequeños estudiantes." />
-        {/* Puedes agregar más meta tags aquí si lo necesitas */}
       </Head>
+
       {/* Header */}
       <header className="p-5 bg-black text-amber-400">
         <div className="container mx-auto">
-          <h1 className={`text-4xl font-bold text-center ${caveat.className}`}>Tesoros del Saber</h1>
+          <h1 className={`text-4xl font-bold text-center ${caveatFont.className}`}>Tesoros del Saber</h1>
           <p className="text-center mt-2 text-amber-200">"Tesoros de la sabiduría, el conocimiento y el discernimiento que Dios ofrece a las personas.<br></br>
             Un lugar donde cada estudiante es valorado, donde el aprendizaje y los valores crecen en cada etapa."</p>
         </div>
@@ -32,12 +32,17 @@ export default function GraduacionPreescolar() {
           width={200}
           height={200}
           className="mx-auto mb-8"
+          priority
         />
         <h2 className="text-4xl font-bold mb-4 text-black">¡Celebramos nuestra Graduación!</h2>
         <p className="text-xl mb-8 text-amber-800">Promoción Inicial 2024</p>
         <nav className="mt-4 flex justify-center space-x-6">
-        <Link href="/galeria"><Button size="lg" className="bg-amber-400 text-black hover:bg-amber-500">Ver Galería</Button></Link>
-          <Link href="/anuario"><Button size="lg" className="bg-amber-400 text-black hover:bg-amber-500">Ver Anuario</Button></Link>
+          <Link href="/galeria">
+            <Button size="lg" className="bg-amber-400 text-black hover:bg-amber-500" aria-label="Ver galería de fotos">Ver Galería</Button>
+          </Link>
+          <Link href="/anuario">
+            <Button size="lg" className="bg-amber-400 text-black hover:bg-amber-500" aria-label="Ver anuario de graduación">Ver Anuario</Button>
+          </Link>
         </nav>
       </section>
 
@@ -117,25 +122,6 @@ export default function GraduacionPreescolar() {
           </div>
         </div>
       </section>
-
-      {/* Detalles del Evento */}
-      {/*<section className="container mx-auto px-4 py-16">
-        <h3 className="text-2xl font-bold mb-8 text-center text-black">Detalles de la Ceremonia</h3>
-        <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg border border-amber-400">
-          <div className="flex items-center mb-4">
-            <Calendar className="w-6 h-6 text-amber-400 mr-2" />
-            <p className="text-lg text-black">14 de Diciembre de 2024</p>
-          </div>
-          <div className="flex items-center mb-4">
-            <Clock className="w-6 h-6 text-amber-400 mr-2" />
-            <p className="text-lg text-black">1:00 PM</p>
-          </div>
-          <div className="flex items-center">
-            <MapPin className="w-6 h-6 text-amber-400 mr-2" />
-            <p className="text-lg text-black">Auditorio INEN</p>
-          </div>
-        </div>
-      </section>*/}
 
       {/* Footer */}
       <footer className="bg-black text-amber-400 py-8">

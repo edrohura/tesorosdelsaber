@@ -5,7 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from 'lucide-react'
 import { Button } from "@/components/ui/button"
-import { caveat } from '../layout'
 
 type MediaItem = {
     type: 'image';
@@ -64,7 +63,7 @@ export default function Galeria() {
             {/* Header */}
             <header className="p-5 bg-black text-amber-400">
                 <div className="container mx-auto flex justify-between items-center">
-                    <h1 className={`text-4xl font-bold ${caveat.className}`}>Tesoros del Saber - Galería</h1>
+                    <h1 className="text-4xl font-bold font-caveat">Tesoros del Saber - Galería</h1>
                     <Link href="/" className="flex items-center text-amber-400 hover:text-amber-300">
                         <ArrowLeft className="mr-2" />
                         Regresar
@@ -97,7 +96,6 @@ export default function Galeria() {
                     Descargar Video
                 </a>
             </section>
-
 
             {/* Contenido de la Galería */}
             <main className="container mx-auto px-4 py-16">
@@ -154,8 +152,8 @@ export default function Galeria() {
                                 <Image
                                     src={mediaItems[lightboxIndex].src}
                                     alt={mediaItems[lightboxIndex].alt}
-                                    width={800}
-                                    height={600}
+                                    width={2048}
+                                    height={1536}
                                     objectFit="contain"
                                 />
                             </div>
@@ -196,4 +194,3 @@ export default function Galeria() {
         </div>
     )
 }
-
