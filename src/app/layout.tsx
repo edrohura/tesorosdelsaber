@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 export const caveatFont = Caveat({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-caveat',  // Aquí añades la variable para la fuente
+  variable: '--font-caveat', // Asegúrate de que este nombre coincida con el que usas en el body
 });
 
 export default function RootLayout({
@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${caveatFont.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${caveatFont.variable} antialiased`} // Aplica la clase de la variable de fuente
       >
         {children}
       </body>
